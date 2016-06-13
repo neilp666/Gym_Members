@@ -1,0 +1,23 @@
+<h1>Listing all Articles</h1>
+<p>
+  <%= link_to "Create new Activity", new_activity_path %>
+</p>
+
+<table>
+  <tr>
+    <th>Location</th>
+    <th>Bio</th>
+  </tr>
+
+  <% @activities.each do |activity| %>
+  <tr>
+    <td><%= activity.location %></td>
+    <td><%= activity.bio %></td>
+    <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
+    <td><%= link_to 'Show', activity_path(activity) %></td>
+    <td><%= link_to 'Delete', activity_path(activity), method: :delete, data: {confirm: "Are you sure?"} %></td>
+  </tr>
+
+  <% end %>
+
+</table>

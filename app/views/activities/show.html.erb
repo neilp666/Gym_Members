@@ -1,0 +1,8 @@
+<h1>Showing selected activity</h1>
+
+<p>Location <%= @activity.location %></p>
+
+<p>Bio: <%= @activity.bio %></p>
+
+<%= link_to "Edit this activity", edit_activity_path(@activity) %> ||
+<%= link_to "Back to the activites listing", activities_path %>
