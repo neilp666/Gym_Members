@@ -21,7 +21,7 @@ class ActivitiesController < ApplicationController
   def create
      @activity = Activity.new(activity_params)
      if @activity.save
-       flash[:notice] = "Activity was successfully created"
+       flash[:success] = "Activity was successfully created"
        redirect_to activity_path(@activity)
      else
        render 'new'
@@ -30,7 +30,7 @@ class ActivitiesController < ApplicationController
 
   def update
     if @activity.update(activity_params)
-      flash[:notice] = "Activity was successfully updated"
+      flash[:success] = "Activity was successfully updated"
       redirect_to activity_path(@activity)
     else
       render 'edit'
@@ -39,7 +39,7 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity.destroy
-    flash[:notice] = "Activity was successfully deleted"
+    flash[:danger] = "Activity was successfully deleted"
     redirect_to activities_path
   end
 
