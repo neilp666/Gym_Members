@@ -1,0 +1,27 @@
+
+
+<% obj.each do |activity| %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="well well-lg">
+      <div class="activity-location">
+        <%= activity.location %>
+      </div>
+      <div class="activity-bio">
+       <%= link_to activity.bio , activity_path(activity) %>
+       <div class="activity-meta-details">
+         <small>Created by: <%= activity.member.username if activity.member %>,
+                          <%= time_ago_in_words(activity.created_at) %> ago
+                          last updated: <%= time_ago_in_words(activity.updated_at) %> ago</small>
+       </div>
+      </div>
+      <div class="activity-actions">
+        <%= link_to 'Edit', edit_activity_path(activity), class: "btn btn-primary" %>
+        <%= link_to 'Delete', activity_path(activity), method: :delete, data: {confirm: "Are you sure" }, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+ </div>
+<% end %>
+
+
