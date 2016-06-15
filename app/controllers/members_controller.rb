@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_admin, only: [:destroy]
 
   def index
     @members = Member.paginate(page: params[:page], per_page: 3)
@@ -29,12 +30,21 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     if @member.save
+      session[:member_id] = @member.id
       flash[:success] = "Welecom to Gym Buddies #{@member.username}"
-      redirect_to activities_path
+      redirect_to member_path(@member)
     else
       render 'new'
     end
   end
+
+    def destroy
+      @member = Member.find(params[:id])
+      @member.destroy
+      flash[:danger] = "User & all activities created by user have been deleted"
+      redirect_to members_path
+    end
+
 
   private
 
@@ -47,8 +57,15 @@ class MembersController < ApplicationController
   end
 
   def require_same_user
-    if current_member != @member
+    if current_member != @member and !current_member.admin?
       flash[:danger] = "You can only edit your won account"
+      redirect_to root_path
+    end
+  end
+
+  def require_admin
+    if logged_in? and !current_member.admin?
+      flash[:danger] = "only admin users can perform that action"
       redirect_to root_path
     end
   end

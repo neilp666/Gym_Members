@@ -57,7 +57,7 @@ class ActivitiesController < ApplicationController
   end
 
   def require_same_user
-    if current_member != @activity.member
+    if current_member != @activity.member and !current_member.admin?
       flash[:danger] = "You can only edit or delete yout own activities"
       redirect_to root_path
     end

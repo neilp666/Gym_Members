@@ -11,6 +11,10 @@
           </li>
 
           <li><small><%= pluralize(member.activities.count, "activity") if member.activities %></small></li>
+          <% if logged_in? and current_member.admin? %>
+            <li><%= link_to "Delete this gym member", member_path(member), method: :delete, data: { confirm: "Are you sure you want to 
+              delete the user and all their activities"} %></li>
+          <% end %>
         </div>
       </div>
     </ul>

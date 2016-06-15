@@ -22,9 +22,9 @@
   <hr>
   <%= simple_format(@activity.bio) %>
   <div class="activity-actions">
-      <% if logged_in? && current_member == @activity.member %>
+      <% if logged_in? && (current_member == @activity.member || current_member.admin?) %>
           <%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-primary" %>
-          <%= link_to "Delete this article", activity_path(@activity), method: :delete, data: { confirm: "Are you sure , you want to delete the activity?"}, class: "btn btn-danger" %>
+          <%= link_to "Delete this article", activity_path(@activity), method: :delete, data: { confirm: "Are you sure , you want to delete the activity?" }, class: "btn btn-danger" %>
       <% end %>
       <%= link_to "view all activites listing", activities_path, class: "btn btn-success" %>
   </div>
