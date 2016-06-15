@@ -1,1 +1,10 @@
-show.html.erb
+<h3 align="center"><%= "Category: " + @category.name %></h3>
+  <div align="center">
+    <%= will_paginate  @category_activities%>
+  </div>
+
+<%= render 'activities/activity', obj: @category_activities  %>
+
+  <div align="center">
+    <%= will_paginate @category_activities %>
+  </div>

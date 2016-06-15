@@ -53,7 +53,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:location, :bio)
+    params.require(:activity).permit(:location, :bio, category_ids: [])
   end
 
   def require_same_user

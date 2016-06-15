@@ -21,6 +21,9 @@
   <h4 class="center bio"><strong>Bio</strong></h4>
   <hr>
   <%= simple_format(@activity.bio) %>
+  <% if @activity.categories.any? %>
+    <p>Categories: <%= render @activity.categories %></p>
+  <% end %>
   <div class="activity-actions">
       <% if logged_in? && (current_member == @activity.member || current_member.admin?) %>
           <%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-primary" %>
