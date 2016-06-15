@@ -1,11 +1,31 @@
 <h3 align="center">Location: <%= @activity.location %></h3>
 <div class="well col-xs-8 col-xs-offset-2">
+  <% if @activity.member %>
+    <ul class="listing">
+      <div class="row center">
+        <div class="col-md-4 col-md-offset-4">
+          <li>Created by:</li>
+          <li><%= link_to gravatar_for(@activity.member), member_path(@activity.member)
+          %></li>
+          <li class="member-title">
+            <%= link_to @activity.member.username, member_path(@activity.member)  %>
+          </li>
+
+          <li><small><%= pluralize(@activity.member.activities.count, "activity") if @activity.member.activities %></small></li>
+        </div>
+      </div>
+    </ul>
+    <% end %>
+
+
   <h4 class="center bio"><strong>Bio</strong></h4>
   <hr>
   <%= simple_format(@activity.bio) %>
   <div class="activity-actions">
-      <%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-primary" %>
-      <%= link_to "Delete this article", activity_path(@activity), method: :delete, data: { confirm: "Are you sure , you want to delete the activity?"}, class: "btn btn-danger" %>
+      <% if logged_in? && current_member == @activity.member %>
+          <%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-primary" %>
+          <%= link_to "Delete this article", activity_path(@activity), method: :delete, data: { confirm: "Are you sure , you want to delete the activity?"}, class: "btn btn-danger" %>
+      <% end %>
       <%= link_to "view all activites listing", activities_path, class: "btn btn-success" %>
   </div>
 </div>

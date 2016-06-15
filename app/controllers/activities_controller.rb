@@ -1,8 +1,10 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:edit, :show ,:update ,:destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
-    @activities = Activity.all
+    @activities = Activity.paginate(page: params[:page], per_page: 5)
   end
 
 
@@ -52,6 +54,13 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:location, :bio)
+  end
+
+  def require_same_user
+    if current_member != @activity.member
+      flash[:danger] = "You can only edit or delete yout own activities"
+      redirect_to root_path
+    end
   end
 
   
