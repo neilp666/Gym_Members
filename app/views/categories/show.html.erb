@@ -1,10 +1,16 @@
 <h3 align="center"><%= "Category: " + @category.name %></h3>
   <div align="center">
-    <%= will_paginate  @category_activities%>
+    <% if logged_in? and current_member.admin? %>
+      <div class="row">
+        <span class="badge"><%= link_to "Edit Category name", edit_category_path(@category) %></span>
+      </div>
+    <% end %>
+   <%= will_paginate  @category_activities%>
   </div>
 
 <%= render 'activities/activity', obj: @category_activities  %>
 
-  <div align="center">
-    <%= will_paginate @category_activities %>
-  </div>
+<div align="center">
+  <%= will_paginate @category_activities %>
+</div>
+  
