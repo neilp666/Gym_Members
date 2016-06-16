@@ -5,10 +5,10 @@
   <div class="col-xs-8 col-xs-offset-2">
     <div class="well well-lg">
       <div class="activity-location">
-        <%= activity.location %>
+        Location: <%= activity.location %>
       </div>
       <div class="activity-bio">
-       <%= link_to activity.bio , activity_path(activity) %>
+       Bio: <%= link_to activity.bio , activity_path(activity) %>
        <div class="activity-meta-details">
          <small>Created by: <%= activity.member.username if activity.member %>,
                           <%= time_ago_in_words(activity.created_at) %> ago

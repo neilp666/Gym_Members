@@ -1,4 +1,4 @@
-<h3 align="center">Location: <%= @activity.location %></h3>
+
 <div class="well col-xs-8 col-xs-offset-2">
   <% if @activity.member %>
     <ul class="listing">
@@ -11,14 +11,14 @@
             <%= link_to @activity.member.username, member_path(@activity.member)  %>
           </li>
 
-          <li><small><%= pluralize(@activity.member.activities.count, "activity") if @activity.member.activities %></small></li>
+          
         </div>
       </div>
     </ul>
     <% end %>
 
 
-  <h4 class="center bio"><strong>Bio</strong></h4>
+
   <hr>
   <%= simple_format(@activity.bio) %>
   <% if @activity.categories.any? %>
