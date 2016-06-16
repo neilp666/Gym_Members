@@ -1,7 +1,47 @@
-$navbar-default-bg: #CC0000;
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+ $dark:        #424652;
+ $light:       #9a9da4;
+ $main:        #34314c;
+ $secondary:   #9592ad;
+ $border:      #d9dee9;
+ $white:       #FFFFFF;
+ $highlight_1: #fd7473;  // Red Colour
+ $highlight_2: #fec951;  // Yellow Colour
+ $highlight_3: #47b8e0;  // Blue Colour
+ $highlight_4: #9f68d0;  // Purple Colour
+$body-bg:                                                   #ecf0f1;
+$font-family-sans-serif:                'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$navbar-height:                                        45px;
+$navbar-default-bg:                          white;
+$navbar-default-brand-color:      #c0392b;
+$brand-primary:                                    #c0392b;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+
+ .border {
+  height: 6px;
+  border: 0;
+  background-color: $highlight_1;
+  background-image: 
+        linear-gradient(
+          to right,
+          $highlight_1,
+          $highlight_1 25%, 
+          $highlight_2 25%,
+          $highlight_2 50%,
+          $highlight_2 50%,
+          $highlight_3 75%,
+          $highlight_4 75%,
+          $highlight_4 100%,
+          $highlight_4 100%
+          );
+
+      -webkit-background-size: 50% 100%;
+      -moz-background-size: 50% 100%;
+      background-size: 50% 100%;
+}
 
 
 .jumbotron {
@@ -44,12 +84,7 @@ $navbar-default-bg: #CC0000;
   padding-top: 5px;
 
 }
-.nav .navbar-default {
-  color: white;
-  text-decoration: none;
-  font-size: 25px
 
-}
 
 .badge {
   background-color: #CEF6F5;
