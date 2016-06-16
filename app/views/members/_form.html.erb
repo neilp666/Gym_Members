@@ -1,6 +1,7 @@
 
 <%= render 'shared/errors', obj: @member %>
 
+
   <div class="row">
     <div class="col-xs-12">
       <%= form_for(@member, :html => {class: "form-horizontal", role: "form"}) do |f| %>
@@ -43,5 +44,6 @@
     [<%= link_to "Cancel request and return to the activites listing", activities_path %>]
     </div>
   </div>
+</div>
 
 
